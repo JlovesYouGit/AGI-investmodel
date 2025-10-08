@@ -1,0 +1,20 @@
+{
+  "name": "trade-mcp-config",
+  "version": "1.0.0",
+  "description": "Shared configuration for Trade-MCP",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "eslint-preset.js",
+    "prettier-preset.js",
+    "typescript-preset.json"
+  ],
+  "dependencies": {
+    "eslint-config-next": "^14.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.0",
+    "eslint-plugin-jsx-a11y": "^6.7.0",
+    "eslint-plugin-react": "^7.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
+}
