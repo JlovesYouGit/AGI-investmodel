@@ -1,0 +1,44 @@
+name: trade-mcp
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pytorch
+  - pytorch-cuda=12.1
+  - torchvision
+  - torchaudio
+  - transformers
+  - accelerate
+  - bitsandbytes
+  - peft
+  - datasets
+  - tokenizers
+  - sentencepiece
+  - scipy
+  - numpy
+  - pandas
+  - aiohttp
+  - asyncio
+  - python-telegram-bot
+  - gradio
+  - prometheus-client
+  - ruff
+  - mypy
+  - pytest
+  - pytest-asyncio
+  - respx
+  - playwright
+  - pip:
+    - duckduckgo-search
+    - yfinance
+    - mcp
+    - mcp[server]
+    - python-dotenv
+    - soundfile
+    - librosa
+    - fastapi
+    - uvicorn

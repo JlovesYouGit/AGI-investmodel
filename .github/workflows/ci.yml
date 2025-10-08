@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: 3.11
+        environment-file: environment.yml
+        activate-environment: trade-mcp
+    
+    - name: Install dependencies
+      shell: pwsh
+      run: |
+        conda activate trade-mcp
+        pip install -e .
+    
+    - name: Run tests
+      shell: pwsh
+      run: |
+        conda activate trade-mcp
+        pytest -q --cov=trade_mcp --cov-report=xml
+    
+    - name: Run linter
+      shell: pwsh
+      run: |
+        conda activate trade-mcp
+        ruff check .
+    
+    - name: Type checking
+      shell: pwsh
+      run: |
+        conda activate trade-mcp
+        mypy --strict trade_mcp
+    
+    - name: Build Docker image
+      shell: pwsh
+      run: |
+        docker build -t trade-mcp .
+    
+    - name: Push to GHCR
+      if: github.ref == 'refs/heads/main'
+      shell: pwsh
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        docker tag trade-mcp ghcr.io/${{ github.repository_owner }}/trade-mcp:latest
+        docker push ghcr.io/${{ github.repository_owner }}/trade-mcp:latest
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella

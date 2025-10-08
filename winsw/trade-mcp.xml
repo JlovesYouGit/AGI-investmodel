@@ -1,0 +1,17 @@
+<service>
+  <id>trade-mcp</id>
+  <name>Trade-MCP Autonomous Trading Assistant</name>
+  <description>Trade-MCP Autonomous Trading Assistant</description>
+  <executable>N:\autoinvestor\venv\Scripts\python.exe</executable>
+  <arguments>-m trade_mcp</arguments>
+  <workingdirectory>N:\autoinvestor</workingdirectory>
+  <env name="HF_TOKEN" value="hf_xxx" />
+  <env name="TELEGRAM_TOKEN" value="8396091529:AAFohgLuMcii7hFaMcaOzpU7O3i9IFDbdfU" />
+  <env name="CAPITAL" value="5000" />
+  <logmode>rotate</logmode>
+  <logpath>N:\autoinvestor\.data\logs</logpath>
+  <resetfailure>1 min</resetfailure>
+  <onfailure action="restart" delay="10 sec"/>
+  <onfailure action="restart" delay="20 sec"/>
+  <stopparentprocessfirst>true</stopparentprocessfirst>
+</service>

@@ -1,0 +1,113 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trade-mcp"
+version = "0.1.0"
+description = "Autonomous Trading Assistant with MCP Integration"
+readme = "README.md"
+authors = [{name = "Trade-MCP Team"}]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "python-telegram-bot",
+    "gradio",
+    "transformers",
+    "torch",
+    "accelerate",
+    "bitsandbytes",
+    "peft",
+    "datasets",
+    "tokenizers",
+    "sentencepiece",
+    "scipy",
+    "numpy",
+    "pandas",
+    "aiohttp",
+    "asyncio",
+    "prometheus-client",
+    "duckduckgo-search",
+    "yfinance",
+    "mcp",
+    "mcp[server]",
+    "python-dotenv",
+    "soundfile",
+    "librosa",
+    "playwright",
+    "fastapi",
+    "uvicorn"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "respx",
+    "ruff",
+    "mypy",
+    "diagrams"
+]
+
+[project.scripts]
+trade-mcp = "trade_mcp.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["trade_mcp*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+exclude = [
+    "venv*",
+    "venv_*",
+    ".venv*",
+    "node_modules",
+    "whisper.cpp",
+    "winsw",
+    "autoinvestor/**/venv*",
+    "trade_mcp.egg-info",
+    "**/*.dist-info",
+    "**/*.egg-info",
+    "huggingface",
+    "tests/**/__pycache__",
+    # repo-level helper scripts not part of the package
+    "check-*.py",
+    "final-*.py",
+    "diagnose*.py",
+    "download-*.py",
+    "create_fallback_reasoner.py",
+    "clear-and-redownload-model.py",
+    "force-*.py",
+    "start*.py",
+    "test_*.py",
+    "test-*.py",
+    "test_backend_*.py",
+    "test_model*.py",
+    "check_*.py"
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+  "trade_mcp.bot",
+  "trade_mcp.audio",
+  "trade_mcp.browser",
+  "trade_mcp.finetune",
+  "trade_mcp.finetune_worker",
+  "trade_mcp.insider",
+  "trade_mcp.__main__",
+  "trade_mcp.webui",
+]
+ignore_errors = true

@@ -1,0 +1,1 @@
+"""Trade-MCP: Autonomous Trading Assistant with MCP Integration."""

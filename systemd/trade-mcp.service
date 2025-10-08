@@ -1,0 +1,17 @@
+[Unit]
+Description=Trade-MCP Autonomous Trading Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=trade-mcp
+WorkingDirectory=/opt/trade-mcp
+Environment=HF_TOKEN=hf_xxx
+Environment=TELEGRAM_TOKEN=8396091529:AAFohgLuMcii7hFaMcaOzpU7O3i9IFDbdfU
+Environment=CAPITAL=5000
+ExecStart=/opt/trade-mcp/venv/bin/python -m trade_mcp
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

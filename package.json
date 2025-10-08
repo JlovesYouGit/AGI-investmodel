@@ -1,0 +1,35 @@
+{
+  "name": "trade-mcp",
+  "version": "1.0.0",
+  "description": "Modernized Autonomous Trading Assistant with MCP Integration",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "clean:workspaces": "turbo run clean",
+    "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@eslint/js": "^9.37.0",
+    "husky": "^8.0.0",
+    "prettier": "^2.8.0",
+    "turbo": "^1.10.0",
+    "typescript-eslint": "^8.46.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@8.6.0"
+}
